@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sk-SK">
+<head>
+	<meta charset="utf-8">
+
+	<title>{ifset title}{include title|striptags} | {/ifset}Nette Web</title>
+        <meta name="description" content="{include description|striptags}"/>
+
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
+        
+        {block css}
+        <link rel="stylesheet" href="{$basePath}/css/style.css" type="text/css"/>
+        {/block}
+</head>
+
+<body>
+        <header>
+            <h1>Jednoduchý redakčný systém v Nette</h1>
+        </header>
+    
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+        
+        <nav>
+            <ul>
+                <li><a n:href=":Core:Article:">Úvod</a></li>
+                <li><a n:href=":Core:Article:list">Zoznam článkov</a></li> {* :Core:Article:list *}
+                <li><a n:href=":Core:Contact:">Kontakt</a></li>  {* :Core:Contact *}
+            </ul>
+        </nav>
+        <br clear="both"/>
+        <article>
+            <header>
+                <h1>{include title}</h1>
+            </header>
+            <section>
+                {include content}
+            </section>
+        </article>
+
+        <footer>
+            <p>
+                Ukážková aplikácia pre jednoduchý systém v Nette z programátorskej socialnej siete.
+                <a n:href=":Core:Administration:">Administrácia</a>
+            </p>
+        </footer>
+	{block scripts}
+	<script src="//nette.github.io/resources/js/netteForms.min.js"></script>
+	{/block}
+</body>
+</html>

@@ -1,0 +1,10 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=blog_db'
+	user: root
+	password: 789456
+	options:
+		lazy: yes
+

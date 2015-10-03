@@ -1,0 +1,16 @@
+{define title}Výpis článkov{/define}
+{define description}Výpis všetkých článkov.{/define}
+{block content}
+<table>
+    <tr n:foreach="$articles as $article">
+        <td>
+            <h2><a n:href=":Core:Article: $article->url">{$article->title}</a></h2>
+            {$article->description}
+            <br/>
+            {if $admin}
+                <a n:href=":Core:Article:editor $article->url">Editovať</a>
+                <a n:href=":Core:Article:remove $article->url">Smazať</a>
+            {/if}
+        </td>        
+    </tr>
+</table>

@@ -1,0 +1,43 @@
+parameters:
+	guest: guest
+	admin: admin
+	member: member
+
+	error: Error
+
+php:
+	date.timezone: Europe/Bratislava
+
+
+application:
+	errorPresenter: %error%
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+di:
+	debugger: true
+
+session:
+	expiration: 30 minutes
+
+security:
+	roles:
+		guest:
+		member: [guest]
+		admin:
+
+services:
+	router: App\RouterFactory::createRouter
+	authenticator: App\Model\UserManager
+	- App\Forms\UserForms
+	security.authorizator:
+		setup:
+			- addResource(%error%)
+			- allow(%guest%, %error%)
+			- allow(%admin%)
+
+includes:
+	- ..\CoreModule\config\config.neon
+
+forms:
+	messages:
+		REQUIRED: 'Povinné pole.'

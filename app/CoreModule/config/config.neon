@@ -1,0 +1,23 @@
+# Konfiguracny subor pre CoreModule
+
+parameters:
+        administration: Core:Administration
+        article: Core:Article
+        contact: Core:Contact
+
+# Nastavenie sluzieb pristupnych pomocou DI v ramci celej aplikacie
+
+services:
+        - App\CoreModule\Model\ArticleManager
+        security.authorizator: # Nastavení zdrojů a pravidel přístupu k nim v rámci CoreModule pomocí statického ACL.
+                setup:
+                        - addResource(%administration%)
+                        - addResource(%article%)
+                        - addResource(%contact%)
+                        - allow(%guest%, %administration%, 'login')
+                        - allow(%guest%, %administration%, 'register')
+                        - allow(%guest%, %article%, 'default')
+                        - allow(%guest%, %article%, 'list')
+                        - allow(%guest%, %contact%)
+                        - allow(%member%, %administration%, 'default')
+                        - allow(%member%, %administration%, 'logout')
