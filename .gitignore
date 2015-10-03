@@ -1,4 +1,4 @@
-nbproject/
-app/config/config.local.neon
-temp/
+/nbproject/
+/app/config/config.local.neon
+/temp/
 
