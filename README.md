@@ -1,1 +1,3 @@
-Jednoduchý redakčný systém v Nette.
+Jednoduchý redakčný systém
+===
+Jednoduchý redakčný systém vytvorený v Nette.
